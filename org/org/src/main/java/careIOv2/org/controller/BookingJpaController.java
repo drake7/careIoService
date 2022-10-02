@@ -1,6 +1,7 @@
 package careIOv2.org.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -35,4 +36,12 @@ public class BookingJpaController {
 		
 	}
 		
+	
+	@GetMapping("/booking")
+	public List<Booking> retrieveAllUsers() {
+
+		return bookingRepository.findAll();
+
+	}
+
 }
