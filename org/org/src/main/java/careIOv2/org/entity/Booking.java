@@ -18,6 +18,7 @@ public class Booking {
 
 	@Id
 	@GeneratedValue
+	@Column(name="booking_id")
 	public int bookingID;
 	
 	@Column(name="user_id")
