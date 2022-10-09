@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ public class BookingJpaController {
 		this.bookingRepository=bookingRepository;
 	}
 	
+	@CrossOrigin
 	@PostMapping("booking")
 	public ResponseEntity<Booking> addBooking(@Valid @RequestBody Booking booking) {
 		Booking savedBooking = bookingRepository.save(booking);
@@ -36,7 +38,7 @@ public class BookingJpaController {
 		
 	}
 		
-	
+	@CrossOrigin
 	@GetMapping("/booking")
 	public List<Booking> retrieveAllUsers() {
 
