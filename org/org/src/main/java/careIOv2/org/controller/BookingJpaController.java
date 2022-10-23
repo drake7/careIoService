@@ -18,6 +18,8 @@ import careIOv2.org.dao.BookingRepository;
 import careIOv2.org.entity.Booking;
 import careIOv2.org.entity.User;
 
+
+@CrossOrigin(origins = "http://localhost:5500")
 @RestController
 public class BookingJpaController {
 
@@ -27,8 +29,8 @@ public class BookingJpaController {
 	
 		this.bookingRepository=bookingRepository;
 	}
-	
-	@CrossOrigin
+
+	@CrossOrigin(origins = "http://localhost:5500")
 	@PostMapping("booking")
 	public ResponseEntity<Booking> addBooking(@Valid @RequestBody Booking booking) {
 		Booking savedBooking = bookingRepository.save(booking);
@@ -37,9 +39,9 @@ public class BookingJpaController {
 		return ResponseEntity.created(location).build();
 		
 	}
-		
-	@CrossOrigin
-	@GetMapping("/booking")
+
+	@CrossOrigin(origins = "http://localhost:5500")
+	@GetMapping("booking")
 	public List<Booking> retrieveAllUsers() {
 
 		return bookingRepository.findAll();

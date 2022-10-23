@@ -3,6 +3,7 @@ package careIOv2.org.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +28,9 @@ public class Booking {
 
 	@Column(name="service_provider_id")
 	public int serviceProviderId;
-	
 
-	@Column(name="booking_date")
-	public LocalDate bookingDate;
+	//@Column(name="booking_date")
+	public LocalDateTime bookingDate;
 
 	@Column(name="start_time")
 	public LocalDateTime startTime;
@@ -71,11 +71,11 @@ public class Booking {
 		this.serviceProviderId = serviceProviderId;
 	}
 
-	public LocalDate getBookingDate() {
+	public LocalDateTime getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDate bookingDate) {
+	public void setBookingDate(LocalDateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

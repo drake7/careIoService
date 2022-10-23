@@ -31,7 +31,7 @@ public class UserController {
 	}
 
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://localhost:5500")
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {
 
