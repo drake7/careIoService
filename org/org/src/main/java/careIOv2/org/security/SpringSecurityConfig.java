@@ -21,7 +21,8 @@ public class SpringSecurityConfig {
 		//to enable basic auth with default parameters
 		http.httpBasic(withDefaults());
 		
-		http.cors(); 
+		http.cors();
+		http.csrf().disable();
 		
 		return http.build();
 		

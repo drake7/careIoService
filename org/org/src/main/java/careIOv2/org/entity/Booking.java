@@ -1,9 +1,7 @@
 
 package careIOv2.org.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,39 +10,38 @@ import javax.persistence.Id;
 
 @Entity
 public class Booking {
-	
+
 	protected Booking() {
-		
+
 	}
 
 	@Id
 	@GeneratedValue
-	@Column(name="booking_id")
+	@Column(name = "booking_id")
 	public int bookingID;
-	
-	@Column(name="user_id")
-	public int userId;
-	
 
-	@Column(name="service_provider_id")
+	@Column(name = "user_id")
+	public int userId;
+
+	@Column(name = "service_provider_id")
 	public int serviceProviderId;
 
-	//@Column(name="booking_date")
+	// @Column(name="booking_date")
 	public LocalDateTime bookingDate;
 
-	@Column(name="start_time")
+	@Column(name = "start_time")
 	public LocalDateTime startTime;
 
-	@Column(name="end_time")
+	@Column(name = "end_time")
 	public LocalDateTime endTime;
 
-	@Column(name="total_price")
+	@Column(name = "total_price")
 	public long totalPrice;
 
-	@Column(name="booking_key")
+	@Column(name = "booking_key")
 	public String bookingKey;
 
-	@Column(name="is_finished")
+	@Column(name = "is_finished")
 	public int isFinished;
 
 	public int getBookingID() {
@@ -118,6 +115,5 @@ public class Booking {
 	public void setIsFinished(int isFinished) {
 		this.isFinished = isFinished;
 	}
-	
-	
+
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,7 +31,15 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
     response.setHeader("Access-Control-Allow-Credentials", "true");
     response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
     response.setHeader("Access-Control-Max-Age", "3600");
-    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods,Content-Type, Authorization,Accept, X-Requested-With, remember-me");
+    response.setHeader("Access-Control-Allow-Headers",
+    		"Access-Control-Allow-Origin,"
+    		+ "Access-Control-Allow-Headers,"
+    		+ "Access-Control-Allow-Methods,"
+    		+ "Content-Type,"
+    		+ "Authorization,"
+    		+ "Accept,"
+    		+ " X-Requested-With,"
+    		+ " remember-me,Postman-Token,Cookie,Connection,Content-Length,Host,User-Agent,Accept,Accept-Encoding");
 
     chain.doFilter(req, res);
 }
@@ -38,6 +47,9 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 @Override
 public void init(FilterConfig filterConfig) {
 }
+
+
+
 
 @Override
 public void destroy() {

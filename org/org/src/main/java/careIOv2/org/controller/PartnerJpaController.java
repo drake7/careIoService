@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import careIOv2.org.dao.BookingJpaRepository;
-import careIOv2.org.dao.BookingRepository;
+import careIOv2.org.dao.PartnerRepository;
 import careIOv2.org.entity.Booking;
-import careIOv2.org.entity.User;
+import careIOv2.org.entity.Partner;
 
-
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5500")
 @RestController
-public class BookingJpaController {
+public class PartnerJpaController {
 
-	private BookingRepository bookingRepository;
+	private PartnerRepository partnerRepository;
 	
-	public BookingJpaController(BookingRepository bookingRepository) {
+	public PartnerJpaController(PartnerRepository partnerRepository) {
 	
-		this.bookingRepository=bookingRepository;
+		this.partnerRepository=partnerRepository;
 	}
 
 	@CrossOrigin(origins = "http://localhost:5500")
-	@PostMapping("booking")
-	public ResponseEntity<Booking> addBooking(@Valid @RequestBody Booking booking) {
-		Booking savedBooking = bookingRepository.save(booking);
+	@PostMapping("partner")
+	public ResponseEntity<Booking> addPartner(@Valid @RequestBody Partner partner) {
+		Partner savedPartner = partnerRepository.save(partner);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedBooking.getBookingID()).toUri();
+				.buildAndExpand(savedPartner.getPartnerId()).toUri();
 		return ResponseEntity.created(location).build();
 		
 	}
 
 	@CrossOrigin(origins = "http://localhost:5500")
-	@GetMapping("booking")
-	public List<Booking> retrieveAllUsers() {
+	@GetMapping("partner")
+	public List<Partner> retrieveAllUsers() {
 
-		return bookingRepository.findAll();
+		return partnerRepository.findAll();
 
 	}
 
+	
+	
 }
