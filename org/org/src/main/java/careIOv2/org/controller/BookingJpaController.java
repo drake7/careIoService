@@ -66,7 +66,7 @@ public class BookingJpaController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:5500")
-	@PutMapping("/booking/{id}")
+	@PutMapping("/bookingStatus/{id}")
 	public Booking updateBooking(@RequestBody Booking newBooking,@PathVariable int id)
 	{
 		
