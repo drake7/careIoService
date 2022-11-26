@@ -66,15 +66,22 @@ public class BookingJpaController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:5500")
-	@PutMapping("/bookingStatus/{id}")
+	@PutMapping("/booking/{id}")
 	public Booking updateBooking(@RequestBody Booking newBooking,@PathVariable int id)
 	{
 		
-		int id1=id;
-		
-		java.util.Optional<Booking> booking=bookingRepository.findById(id);
-		booking.get().setIsFinished(newBooking.getIsFinished());
-		return bookingRepository.save(booking.get());
-		
+		return bookingRepository.findById(id)
+				.map(updateBooking-> {
+			updateBooking.setBookingDate(newBooking.bookingDate);
+			updateBooking.setEndTime(newBooking.getEndTime());
+			updateBooking.setIsFinished(newBooking.getIsFinished());
+			updateBooking.setStartTime(newBooking.getStartTime());
+			updateBooking.setServiceProviderId(newBooking.getServiceProviderId());
+			updateBooking.setTotalPrice(newBooking.getTotalPrice());
+			return bookingRepository.save(updateBooking);
+		}).orElseGet(()->{
+			newBooking.setBookingID(id);
+			return bookingRepository.save(newBooking);
+		});
 	}
 }
