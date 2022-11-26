@@ -51,6 +51,8 @@ public class BookingJpaController {
 
 	}
 	 
+
+	@CrossOrigin(origins = "http://localhost:5500")
 	@GetMapping("/booking/{id}")
 	public Booking retrieveUser(@PathVariable int id) {
 
