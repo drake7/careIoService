@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,8 @@ import careIOv2.org.dao.BookingJpaRepository;
 import careIOv2.org.dao.BookingRepository;
 import careIOv2.org.entity.Booking;
 import careIOv2.org.entity.User;
+import careIOv2.org.exception.UserNotFoundException;
+import net.bytebuddy.dynamic.DynamicType.Builder.MethodDefinition.ImplementationDefinition.Optional;
 
 
 @CrossOrigin(origins = "*")
@@ -46,6 +49,17 @@ public class BookingJpaController {
 
 		return bookingRepository.findAll();
 
+	}
+	 
+	@GetMapping("/booking/{id}")
+	public Booking retrieveUser(@PathVariable int id) {
+
+		java.util.Optional<Booking> booking = bookingRepository.findById(id);
+		if (booking == null) {
+			throw new UserNotFoundException("id : " + id);
+		}
+
+		return booking.get();
 	}
 
 }
