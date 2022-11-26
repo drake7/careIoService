@@ -6,4 +6,5 @@ import careIOv2.org.entity.Booking;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
+
 }

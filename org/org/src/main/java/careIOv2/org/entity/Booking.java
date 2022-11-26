@@ -116,4 +116,33 @@ public class Booking {
 		this.isFinished = isFinished;
 	}
 
+	public Booking updateWith(Booking newItem) {
+		// TODO Auto-generated method stub
+		
+		return new Booking(this.bookingID,
+				newItem.userId,
+				newItem.serviceProviderId,
+				newItem.bookingDate,
+				newItem.startTime,
+				newItem.endTime,
+				newItem.totalPrice,
+				newItem.bookingKey,
+				newItem.isFinished
+				);
+	}
+
+	public Booking(int bookingID, int userId, int serviceProviderId, LocalDateTime bookingDate, LocalDateTime startTime,
+			LocalDateTime endTime, long totalPrice, String bookingKey, int isFinished) {
+		super();
+		this.bookingID = bookingID;
+		this.userId = userId;
+		this.serviceProviderId = serviceProviderId;
+		this.bookingDate = bookingDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.totalPrice = totalPrice;
+		this.bookingKey = bookingKey;
+		this.isFinished = isFinished;
+	}
+
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -64,4 +65,16 @@ public class BookingJpaController {
 		return booking.get();
 	}
 
+	@CrossOrigin(origins = "http://localhost:5500")
+	@PutMapping("/booking/{id}")
+	public Booking updateBooking(@RequestBody Booking newBooking,@PathVariable int id)
+	{
+		
+		int id1=id;
+		
+		java.util.Optional<Booking> booking=bookingRepository.findById(id);
+		booking.get().setIsFinished(newBooking.getIsFinished());
+		return bookingRepository.save(booking.get());
+		
+	}
 }
