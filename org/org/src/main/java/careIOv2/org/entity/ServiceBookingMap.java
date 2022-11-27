@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ServiceBookingDetails")
-
 public class ServiceBookingMap {
 
 
@@ -24,9 +23,9 @@ public class ServiceBookingMap {
 	@Column(name="booking_id")
 	private long bookingId;
 
-	public ServiceBookingMap( long serviceId, long bookingId) {
+	public ServiceBookingMap( long serviceBookingId,long serviceId, long bookingId) {
 		super();
-	//	this.serviceBookingId = serviceBookingId;
+		this.serviceBookingId = serviceBookingId;
 		this.serviceId = serviceId;
 		this.bookingId = bookingId;
 	}
@@ -35,14 +34,14 @@ public class ServiceBookingMap {
 		// TODO Auto-generated constructor stub
 	}
 
-/*	public long getServiceBookingId() {
+	public long getServiceBookingId() {
 		return serviceBookingId;
 	}
-*/
-	/*public void setServiceBookingId(long serviceBookingId) {
+
+	public void setServiceBookingId(long serviceBookingId) {
 		this.serviceBookingId = serviceBookingId;
 	}
-*/
+
 	public long getServiceId() {
 		return serviceId;
 	}
