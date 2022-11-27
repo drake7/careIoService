@@ -86,9 +86,6 @@ public class BookingJpaController {
 			serviceDetails.add((int) mapId.getServiceId());
 		}
 		booking.get().setServiceBookMap(serviceDetails);
-		
-		
-
 		return booking.get();
 	}
 
