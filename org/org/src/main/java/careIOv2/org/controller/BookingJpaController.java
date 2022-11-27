@@ -1,6 +1,7 @@
 package careIOv2.org.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -75,9 +76,18 @@ public class BookingJpaController {
 	public Booking retrieveUser(@PathVariable int id) {
 
 		java.util.Optional<Booking> booking = bookingRepository.findById(id);
-		if (booking == null) {
-			throw new UserNotFoundException("id : " + id);
+		
+		
+		ArrayList<ServiceBookingMap> serviceBookingMap = serviceBookingRepository.findByBookingId(booking.get().getBookingID());
+		
+		ArrayList<Integer> serviceDetails = new ArrayList<Integer>();
+		for(ServiceBookingMap mapId:serviceBookingMap)
+		{
+			serviceDetails.add((int) mapId.getServiceId());
 		}
+		booking.get().setServiceBookMap(serviceDetails);
+		
+		
 
 		return booking.get();
 	}
