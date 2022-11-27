@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,15 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import careIOv2.org.dao.BookingJpaRepository;
 import careIOv2.org.dao.BookingRepository;
 import careIOv2.org.dao.ServiceBookingRepository;
 import careIOv2.org.entity.Booking;
 import careIOv2.org.entity.ServiceBookingMap;
-import careIOv2.org.entity.User;
-import careIOv2.org.exception.UserNotFoundException;
-import net.bytebuddy.dynamic.DynamicType.Builder.MethodDefinition.ImplementationDefinition.Optional;
-
 
 @CrossOrigin(origins = "*")
 @RestController
