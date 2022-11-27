@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import careIOv2.org.entity.Booking;
-import careIOv2.org.entity.User;
 
 @Repository
 @Transactional

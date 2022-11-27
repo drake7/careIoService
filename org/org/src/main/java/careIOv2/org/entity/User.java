@@ -4,7 +4,9 @@ package careIOv2.org.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Size;
 //pojo class
 @Entity(name="careusers")
@@ -13,13 +15,21 @@ public class User {
 	protected User() {
 		
 	}
-	@Id
-	@GeneratedValue
+	@Id    
+	@GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
 	public int loginId;
-	//not mandatory to map names if the names of the properties inside bean and the table is same
 	@Column(name="userId")
 	public int userId;
 	
+	//not mandatory to map names if the names of the properties inside bean and the table is same
 	@Column(name="is_active")
 	public int isactive;
 	
@@ -31,16 +41,19 @@ public class User {
 	@Column(name="username")
 	public String username;
 	
-	public User(int loginId, int userId, int isactive, String passwords, String username, String role) {
+	@Column(name="roles")
+	public String roles;
+	
+	
+	public User(int loginId, int userId, int isactive, String passwords, String username, String roles) {
 		super();
 		this.loginId = loginId;
 		this.userId = userId;
 		this.isactive = isactive;
 		this.passwords = passwords;
 		this.username = username;
-		this.role = role;
+		this.roles = roles;
 	}
-	public String role;
 	
 	
 	
@@ -74,11 +87,11 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 	
 	
