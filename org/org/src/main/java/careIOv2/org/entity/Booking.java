@@ -2,11 +2,15 @@
 package careIOv2.org.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Booking {
@@ -41,8 +45,20 @@ public class Booking {
 	@Column(name = "booking_key")
 	public String bookingKey;
 
-	@Column(name = "is_finished")
-	public int isFinished;
+	@Column(name = "status")
+	public int status;
+	
+	@Transient
+	@JsonProperty("serviceBookMap")
+	public ArrayList<Integer> serviceBookMap;
+
+	public ArrayList<Integer> getServiceBookMap() {
+		return serviceBookMap;
+	}
+
+	public void setServiceBookMap(ArrayList<Integer> serviceBookMap) {
+		this.serviceBookMap = serviceBookMap;
+	}
 
 	public int getBookingID() {
 		return bookingID;
@@ -108,12 +124,14 @@ public class Booking {
 		this.bookingKey = bookingKey;
 	}
 
-	public int getIsFinished() {
-		return isFinished;
+
+
+	public int getStatus() {
+		return status;
 	}
 
-	public void setIsFinished(int isFinished) {
-		this.isFinished = isFinished;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public Booking updateWith(Booking newItem) {
@@ -127,12 +145,12 @@ public class Booking {
 				newItem.endTime,
 				newItem.totalPrice,
 				newItem.bookingKey,
-				newItem.isFinished
+				newItem.status
 				);
 	}
 
 	public Booking(int bookingID, int userId, int serviceProviderId, LocalDateTime bookingDate, LocalDateTime startTime,
-			LocalDateTime endTime, long totalPrice, String bookingKey, int isFinished) {
+			LocalDateTime endTime, long totalPrice, String bookingKey, int status) {
 		super();
 		this.bookingID = bookingID;
 		this.userId = userId;
@@ -142,7 +160,7 @@ public class Booking {
 		this.endTime = endTime;
 		this.totalPrice = totalPrice;
 		this.bookingKey = bookingKey;
-		this.isFinished = isFinished;
+		this.status = status;
 	}
 
 }

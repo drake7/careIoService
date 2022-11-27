@@ -17,7 +17,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import careIOv2.org.dao.BookingJpaRepository;
 import careIOv2.org.dao.BookingRepository;
+import careIOv2.org.dao.ServiceBookingRepository;
 import careIOv2.org.entity.Booking;
+import careIOv2.org.entity.ServiceBookingMap;
 import careIOv2.org.entity.User;
 import careIOv2.org.exception.UserNotFoundException;
 import net.bytebuddy.dynamic.DynamicType.Builder.MethodDefinition.ImplementationDefinition.Optional;
@@ -29,15 +31,30 @@ public class BookingJpaController {
 
 	private BookingRepository bookingRepository;
 	
-	public BookingJpaController(BookingRepository bookingRepository) {
+	private ServiceBookingRepository serviceBookingRepository;
+	
+	public BookingJpaController(BookingRepository bookingRepository,ServiceBookingRepository serviceBookingRepository) {
 	
 		this.bookingRepository=bookingRepository;
+		this.serviceBookingRepository=serviceBookingRepository;
 	}
 
 	@CrossOrigin(origins = "http://localhost:5500")
 	@PostMapping("booking")
-	public ResponseEntity<Booking> addBooking(@Valid @RequestBody Booking booking) {
+	public ResponseEntity<Booking> addBooking(@RequestBody Booking booking) {
+		
 		Booking savedBooking = bookingRepository.save(booking);
+		
+		
+		for(Integer mapping:booking.getServiceBookMap())
+		{
+			ServiceBookingMap sbMap=new ServiceBookingMap();
+			
+			sbMap.setBookingId(savedBooking.getBookingID());
+			sbMap.setServiceId(mapping);
+			serviceBookingRepository.save(sbMap);
+			
+		}
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(savedBooking.getBookingID()).toUri();
 		return ResponseEntity.created(location).build();
@@ -74,7 +91,7 @@ public class BookingJpaController {
 				.map(updateBooking-> {
 			updateBooking.setBookingDate(newBooking.bookingDate);
 			updateBooking.setEndTime(newBooking.getEndTime());
-			updateBooking.setIsFinished(newBooking.getIsFinished());
+			updateBooking.setStatus(newBooking.getStatus());
 			updateBooking.setStartTime(newBooking.getStartTime());
 			updateBooking.setServiceProviderId(newBooking.getServiceProviderId());
 			updateBooking.setTotalPrice(newBooking.getTotalPrice());
