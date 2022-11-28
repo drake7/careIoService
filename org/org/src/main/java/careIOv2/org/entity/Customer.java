@@ -15,9 +15,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="customer_id")
 	private int customerId;
-	
-
-
 
 	@Column(name="first_name")
 	private String firstName;

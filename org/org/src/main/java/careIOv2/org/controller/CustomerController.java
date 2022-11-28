@@ -34,7 +34,8 @@ private CustomerRepository customerRepository;
 		Customer savedCustomer = customerRepository.save(customer);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(savedCustomer.getCustomerId()).toUri();
-		return ResponseEntity.created(location).build();
+		
+		return ResponseEntity.created(location).body(savedCustomer);
 		
 	}
 	
