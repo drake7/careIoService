@@ -60,8 +60,21 @@ public class BookingJpaController {
 	@GetMapping("booking")
 	public List<Booking> retrieveAllUsers() {
 
-		return bookingRepository.findAll();
+		List<Booking> bookingList = bookingRepository.findAll();
+		
+		for(Booking booking:bookingList)
+		{
+			ArrayList<ServiceBookingMap> serviceBookingMap = serviceBookingRepository.findByBookingId(booking.getBookingID());
+			
+			ArrayList<Integer> serviceDetails = new ArrayList<Integer>();
+			for(ServiceBookingMap mapId:serviceBookingMap)
+			{
+				serviceDetails.add((int) mapId.getServiceId());
+			}
+			booking.setServiceBookMap(serviceDetails);
+		}
 
+		return bookingList;
 	}
 	 
 
