@@ -26,6 +26,7 @@ public class Customer {
 	@Column(name="email")
 	private String userName;
 	
+
 	@Column(name="contact")
 	private String contact;
 	
@@ -121,6 +122,15 @@ public class Customer {
 
 	public String getProvince() {
 		return province;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 

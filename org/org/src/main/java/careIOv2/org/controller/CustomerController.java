@@ -1,6 +1,7 @@
 package careIOv2.org.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -49,6 +50,18 @@ private CustomerRepository customerRepository;
 		}
 
 		return customer.get();
+	}
+	
+	@CrossOrigin(origins = "http://localhost:5500")
+	@GetMapping("customer/")
+	public List<Customer> retrieveCustomers() {
+
+		List<Customer> customer = customerRepository.findAll();
+		if (customer == null) {
+			throw new UserNotFoundException("No user found.");
+		}
+
+		return customer;
 	}
 
 	
