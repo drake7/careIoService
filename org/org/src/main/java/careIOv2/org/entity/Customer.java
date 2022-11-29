@@ -24,7 +24,7 @@ public class Customer {
 	
 
 	@Column(name="email")
-	private String email;
+	private String userName;
 	
 	@Column(name="contact")
 	private String contact;
@@ -44,7 +44,19 @@ public class Customer {
 	@Column(name="password")
 	private String password;
 
+	@Column(name="roles")
+	private String roles;
 
+
+
+	public String getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
 
 
 	public String getFirstName() {
@@ -67,13 +79,13 @@ public class Customer {
 	}
 
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return userName;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String userName) {
+		this.userName = userName;
 	}
 
 
