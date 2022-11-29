@@ -124,15 +124,6 @@ public class Customer {
 		return province;
 	}
 	
-	public String getUserName() {
-		return userName;
-	}
-
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 
 	public void setProvince(String province) {
 		this.province = province;

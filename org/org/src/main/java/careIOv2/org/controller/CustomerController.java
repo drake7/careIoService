@@ -1,6 +1,7 @@
 package careIOv2.org.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import careIOv2.org.dao.CustomerRepository;
 import careIOv2.org.entity.Customer;
+import careIOv2.org.entity.CustomerNew;
 import careIOv2.org.exception.UserNotFoundException;
 
 @CrossOrigin(origins = "http://localhost:5500")
@@ -53,15 +55,32 @@ private CustomerRepository customerRepository;
 	}
 	
 	@CrossOrigin(origins = "http://localhost:5500")
-	@GetMapping("customer/")
-	public List<Customer> retrieveCustomers() {
+	@GetMapping("customer")
+	public List<CustomerNew> retrieveCustomers() {
 
-		List<Customer> customer = customerRepository.findAll();
-		if (customer == null) {
-			throw new UserNotFoundException("No user found.");
+		List<Customer> customerList = customerRepository.findAll();
+		
+		List<CustomerNew> customerNewList = new ArrayList<CustomerNew>();
+		
+		
+		for(Customer cust: customerList)
+		{
+			CustomerNew customerNew = new CustomerNew();
+			customerNew.setAddress(cust.getAddress());
+			customerNew.setCity(cust.getCity());
+			customerNew.setCustomerId(cust.getCustomerId());
+			customerNew.setEmail(cust.getUsername());
+			customerNew.setFirstName(cust.getFirstName());
+			customerNew.setLastName(cust.getLastName());
+			customerNew.setPassword(cust.getPassword());
+			customerNew.setProvince(cust.getProvince());
+			customerNew.setRoles(cust.getRoles());
+			customerNew.setContact(cust.getContact());
+			customerNewList.add(customerNew);
 		}
+		
 
-		return customer;
+		return customerNewList;
 	}
 
 	
